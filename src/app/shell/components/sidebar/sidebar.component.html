@@ -1,0 +1,34 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+  <ul class="list-group">
+    <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard
+    </a>
+    <a *ngIf="authUser.type == 2" routerLink="/owner" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-users"></i>&nbsp;Planos e Preços
+    </a>
+    <a routerLink="/loyalty" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-credit-card"></i>&nbsp;Escolas
+    </a>
+    <a routerLink="/offers" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-percent"></i>&nbsp;Ambientes
+    </a>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('pages')">
+          <span><i class="fa fa-plus"></i>&nbsp; Analítico</span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'pages'">
+          <ul class="submenu">
+              <li>
+                  <a href="javascript:void(0)"><span>Logs</span></a>
+              </li>
+              <li>
+                  <a href="javascript:void(0)"><span>Menu 4.2</span></a>
+              </li>
+              <li>
+                  <a href="javascript:void(0)"><span>Menu 4.3</span></a>
+              </li>
+          </ul>
+      </li>
+  </div>
+  </ul>
+</nav>
