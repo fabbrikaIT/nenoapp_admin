@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 
 import { PlansComponent } from './plans.component';
 import { PlansRoutingModule } from './plans-routing.module';
+import { PlansService } from "../../shared/services/plans.service";
 
 @NgModule({
   imports: [
@@ -16,6 +17,8 @@ import { PlansRoutingModule } from './plans-routing.module';
   declarations: [
     PlansComponent
   ],
-  providers: []
+  providers: [
+    PlansService
+  ]
 })
 export class PlansModule {}

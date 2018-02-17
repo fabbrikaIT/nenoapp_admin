@@ -12,6 +12,15 @@
         <th scope="col">Tipo do Contrato</th>
         <th scope="col">Valor de Venda</th>
       </thead>
+      <tbody>
+        <tr *ngFor="let plan of plansList">
+          <td>{{ plan.id }} </td>
+          <td>{{ plan.name }} </td>
+          <td>{{ plan.description }} </td>
+          <td>{{ plan.contractType | planTypeName }} </td>
+          <td>{{ plan.cost | currency:'BRL' }} </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

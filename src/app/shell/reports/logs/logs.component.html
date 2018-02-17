@@ -27,6 +27,15 @@
         <th scope="col">Message</th>
         <th scope="col">Arguments</th>
       </thead>
+      <tbody>
+        <tr *ngFor="let log of logList">
+          <td>{{ log.type }} </td>
+          <td>{{ log.date | date:'dd/MM/yyyy' }} </td>
+          <td>{{ log.source }} </td>
+          <td>{{ log.message }} </td>
+          <td>{{ log.arguments }} </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

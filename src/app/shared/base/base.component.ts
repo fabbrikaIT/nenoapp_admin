@@ -1,4 +1,7 @@
 import { FormGroup } from '@angular/forms';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { BsLocaleService } from 'ngx-bootstrap';
 
 import { LoginResultEntity } from '../models/auth/loginResult.model';
 import { AlertService } from '../modules/alert/alert.service';
@@ -9,7 +12,9 @@ export abstract class BaseComponent {
   public formFields: FormGroup;
 
   constructor(protected alert: AlertService) {
-
+    // ajustando calendários
+    defineLocale('pt-br', ptBrLocale);
+    // this._localeService.use('pt-br');
   }
 
   // Compartilha os dados so usuário logado

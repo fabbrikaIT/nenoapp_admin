@@ -11,6 +11,7 @@ import { DialogComponent } from './modules/dialog/dialog.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { DynamicViewComponent } from './modules/dynamic-view/dynamic-view.component';
 import { ToggleSelectDirective } from './directives/toggleSelect.directive';
+import { PlanTypePipe } from './pipes/planTypes.pipes';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { ToggleSelectDirective } from './directives/toggleSelect.directive';
     DialogComponent,
     DynamicViewComponent,
     FocusDirective,
-    ToggleSelectDirective
+    ToggleSelectDirective,
+    PlanTypePipe
   ],
   exports: [
     LoadingComponent,
@@ -37,7 +39,8 @@ import { ToggleSelectDirective } from './directives/toggleSelect.directive';
     FieldControlErrorComponent,
     DialogComponent,
     FocusDirective,
-    ToggleSelectDirective
+    ToggleSelectDirective,
+    PlanTypePipe
   ],
   providers: [
   ]

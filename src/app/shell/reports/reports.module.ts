@@ -1,3 +1,4 @@
+import { LogService } from './../../shared/services/log.service';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -18,6 +19,8 @@ import { LogsComponent } from "./logs/logs.component";
     ReportsComponent,
     LogsComponent
   ],
-  providers: []
+  providers: [
+    LogService
+  ]
 })
 export class ReportsModule {}
