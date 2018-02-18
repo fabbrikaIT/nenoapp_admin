@@ -11,8 +11,8 @@ import { ApplicationLog, ELogType } from './../models/logs/applicationlog.model'
 
 @Injectable()
 export class LogService extends BaseService {
-  constructor(config: AppConfig, router: Router, private httpClient: HttpClient) {
-    super(config, router);
+  constructor(config: AppConfig, router: Router, httpClient: HttpClient) {
+    super(config, router, httpClient);
   }
 
   public ListApplicationLogs(): Observable<Array<ApplicationLog>> {

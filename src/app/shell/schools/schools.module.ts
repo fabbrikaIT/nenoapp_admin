@@ -1,3 +1,4 @@
+import { SchoolService } from './../../shared/services/school.service';
 import { SharedModule } from "./../../shared/shared.module";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -16,6 +17,8 @@ import { SchoolsComponent } from "./schools.component";
   declarations: [
     SchoolsComponent
   ],
-  providers: []
+  providers: [
+    SchoolService
+  ]
 })
 export class SchoolsModule {}

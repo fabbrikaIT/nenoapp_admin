@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../shared/base/base.component';
 import { AlertService } from '../../shared/modules/alert/alert.service';
 import { PlansEntity } from '../../shared/models/admin/plans.model';
-import { PlansService } from './../../shared/services/plans.service';
+import { CrudService } from '../../shared/base/crud.service';
 
 @Component({
   selector: 'app-plans',
@@ -13,18 +13,20 @@ import { PlansService } from './../../shared/services/plans.service';
 export class PlansComponent extends BaseComponent implements OnInit {
   plansList: Array<PlansEntity> = new Array<PlansEntity>();
 
-  constructor(alert: AlertService, private service: PlansService) {
+  constructor(alert: AlertService, private service: CrudService<PlansEntity>) {
     super(alert);
    }
 
   ngOnInit() {
+    this.service.InitService("admin/plans", [""]);
+
     this.ListPlans();
   }
 
   private ListPlans() {
     this.isProcessing = true;
 
-    this.service.ListPlans().subscribe(
+    this.service.ListItems().subscribe(
       ret => {
           this.isProcessing = false;
 

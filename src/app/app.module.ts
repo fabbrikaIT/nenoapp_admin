@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { AlertService } from './shared/modules/alert/alert.service';
 import { DialogService } from './shared/modules/dialog/dialog.service';
 import { AdDirective } from './shared/modules/dialog/dialog.component';
+import { CrudService } from './shared/base/crud.service';
 
 registerLocaleData(localePt);
 
@@ -37,7 +38,8 @@ registerLocaleData(localePt);
     AuthGuard,
     AppConfig,
     AlertService,
-    DialogService
+    DialogService,
+    CrudService
   ],
   exports: [
     QRCodeComponent
