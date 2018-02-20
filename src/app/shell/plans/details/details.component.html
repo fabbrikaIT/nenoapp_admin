@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <app-page-header icon="fa-money" [heading]="headerTitle" canGoBack=true></app-page-header>
+  <div class="row">
+    <div class="col-12">
+      <form class="needs-validation" [formGroup]="formFields">
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Dados do Plano</h5>
+            </div>
+            <div class="card-body">
+              <div class="form-group col-sm-12" [ngClass]="applyCssError('name')">
+                <small class="form-text text-muted">Digite aqui o nome do plano de contratação</small>
+                <div class="input-group mb-3">
+                  <div class="input-group-addon">
+                    <i class="fa fa-edit"></i>
+                  </div>
+                  <input class="form-control" autofocus formControlName="name" placeholder="Nome do Plano" [(ngModel)]="plan.name" [ngClass]="applyCssError('name')"
+                  />
+                </div>
+                <app-field-control-error [showError]="verifyValidTouched('name')" errorMessage="Título/Nome é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+              </div>
+              <div class="form-group col-sm-12" [ngClass]="applyCssError('description')">
+                <small class="form-text text-muted">Descreva os benefícios do plano de contratação</small>
+                <div class="input-group mb-3">
+                  <div class="input-group-addon">
+                    <i class="fa fa-comment"></i>
+                  </div>
+                  <textarea class="form-control" formControlName="description" placeholder="Descrição do Plano" [(ngModel)]="plan.description"
+                    [ngClass]="applyCssError('description')"></textarea>
+                </div>
+                <app-field-control-error [showError]="verifyValidTouched('description')" errorMessage="Descrição é Obrigatória" class="fixErrorPosition"></app-field-control-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Plano de Contratação</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <label>Modelo de Contratação</label>
+                  <select class="form-control" formControlName="contractType" [ngModel]="plan.contractType">
+                    <option [ngValue]="1">Mensal</option>
+                    <option [ngValue]="2">Anual</option>
+                    <option [ngValue]="3">Aquisição</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label>Valor de Venda</label>
+                  <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-usd"></i>
+                      </div>
+                      <input class="form-control" dir="rtl" type="text" formControlName="cost" [(ngModel)]="plan.cost" mask="0000,00">
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('cost')" errorMessage="Valor de Contrato é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button *ngIf="!isNew" class="btn btn-danger float-left" (click)="onDelete()">Excluir</button>
+
+              <button class="btn btn-primary float-right" (click)="onSave()">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-loading [isProcessing]="isProcessing"></app-loading>

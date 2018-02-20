@@ -1,0 +1,295 @@
+<div class="container-fluid">
+  <app-page-header icon="fa-graduation-cap" [heading]="headerTitle" canGoBack=true></app-page-header>
+  <div class="row">
+    <div class="col-12">
+      <form class="needs-validation" [formGroup]="formFields">
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Dados da Escola</h5>
+            </div>
+            <div class="card-body">
+              <div class="form-group col-sm-12" [ngClass]="applyCssError('name')">
+                <small class="form-text text-muted">Digite aqui o nome da escola</small>
+                <div class="input-group mb-3">
+                  <div class="input-group-addon">
+                    <i class="fa fa-edit"></i>
+                  </div>
+                  <input class="form-control" autofocus formControlName="name" placeholder="Nome da Escola" [(ngModel)]="school.name" [ngClass]="applyCssError('name')" />
+                </div>
+                <app-field-control-error [showError]="verifyValidTouched('name')" errorMessage="Título/Nome é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('cnpj')">
+                      <small class="form-text text-muted">Digite o CNPJ da escola</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="cnpj" placeholder="CNPJ da Escola" [(ngModel)]="school.cnpj" [ngClass]="applyCssError('cnpj')"
+                        mask="00.000.000/0000-00"/>
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('cnpj')" errorMessage="Cnpj é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-8">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('legalName')">
+                      <small class="form-text text-muted">Digite a Razão Social da escola</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="legalName" placeholder="Razão Social da Escola" [(ngModel)]="school.legalName" [ngClass]="applyCssError('legalName')" />
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('legalName')" errorMessage="Razão Social é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-4">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('phone')">
+                        <small class="form-text text-muted">Digite o telefone principal escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="phone" placeholder="Telefone da Escola" [(ngModel)]="school.phone" [ngClass]="applyCssError('phone')"
+                          mask="(00) 0000-0000"/>
+                      </div>
+                      <app-field-control-error [showError]="verifyValidTouched('phone')" errorMessage="Telefone é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('email')">
+                        <small class="form-text text-muted">Digite o e-mail de contato escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="email" placeholder="E-mail da Escola" [(ngModel)]="school.email"
+                        [ngClass]="applyCssError('email')" type="email" />
+                      </div>
+                      <app-field-control-error [showError]="verifyValidTouched('email')" errorMessage="E-mail é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Localização da Escola</h5>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                  <div class="col-12 col-md-3">
+                      <div class="form-group col-sm-12" [ngClass]="applyCssError('postcode')">
+                        <small class="form-text text-muted">CEP do endereço da escola</small>
+                        <div class="input-group mb-3">
+                          <div class="input-group-addon">
+                            <i class="fa fa-edit"></i>
+                          </div>
+                          <input class="form-control" formControlName="postcode" placeholder="CEP da Escola" [(ngModel)]="school.postcode"
+                          [ngClass]="applyCssError('postcode')" mask="00000-000" (blur)="searchCEP($event.target.value)"/>
+                        </div>
+                        <app-field-control-error [showError]="verifyValidTouched('postcode')" errorMessage="CEP é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                      <div class="form-group col-sm-12" [ngClass]="applyCssError('number')">
+                        <small class="form-text text-muted">Número do endereço da escola</small>
+                        <div class="input-group mb-3">
+                          <div class="input-group-addon">
+                            <i class="fa fa-edit"></i>
+                          </div>
+                          <input class="form-control" formControlName="number" placeholder="Número da Escola" [(ngModel)]="school.number"
+                          [ngClass]="applyCssError('number')" mask="00000-000"/>
+                        </div>
+                        <app-field-control-error [showError]="verifyValidTouched('number')" errorMessage="Número é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="form-group col-sm-12" [ngClass]="applyCssError('complement')">
+                        <small class="form-text text-muted">Complemento do endereço da escola</small>
+                        <div class="input-group mb-3">
+                          <div class="input-group-addon">
+                            <i class="fa fa-edit"></i>
+                          </div>
+                          <input class="form-control" formControlName="complement" placeholder="Complemento do Endereço" [(ngModel)]="school.complement"
+                          [ngClass]="applyCssError('complement')" mask="00000-000"/>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('street')">
+                        <small class="form-text text-muted">Logradouro da escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="street" placeholder="Endereço da Escola" [(ngModel)]="school.street"
+                        [ngClass]="applyCssError('street')" />
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('district')">
+                        <small class="form-text text-muted">Bairro da escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="district" placeholder="Bairro da Escola" [(ngModel)]="school.district"
+                        [ngClass]="applyCssError('district')" />
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('city')">
+                        <small class="form-text text-muted">Cidade da escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="city" placeholder="Cidade da Escola" [(ngModel)]="school.city"
+                        [ngClass]="applyCssError('city')" />
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-2">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('state')">
+                        <small class="form-text text-muted">Estado da escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="state" placeholder="Estado da Escola" [(ngModel)]="school.state"
+                        [ngClass]="applyCssError('state')" />
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Dados de Representante</h5>
+            </div>
+            <div class="card-body" formGroupName="manager">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('manager.name')">
+                    <small class="form-text text-muted">Nome do Representante da escola</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="name" placeholder="Nome do Representante" [(ngModel)]="school.manager.name" [ngClass]="applyCssError('manager.name')"
+                      />
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('manager.name')" errorMessage="Nome do Representante é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('manager.email')">
+                      <small class="form-text text-muted">Digite o e-mail do responsável</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="email" placeholder="E-mail do Responável" [(ngModel)]="school.manager.email"
+                      [ngClass]="applyCssError('manager.email')" type="email" />
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('manager.email')" errorMessage="E-mail do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('manager.document')">
+                      <small class="form-text text-muted">Digite o CPF do responsável</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="document" placeholder="CPF do Responável" [(ngModel)]="school.manager.document"
+                      [ngClass]="applyCssError('manager.document')" mask="000.000.000-00"/>
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('manager.document')" errorMessage="CPF do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-group col-sm-12" [ngClass]="applyCssError('manager.cellphone')">
+                      <small class="form-text text-muted">Digite o celular do responsável</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" formControlName="cellphone" placeholder="Celular do Responável" [(ngModel)]="school.manager.cellphone"
+                      [ngClass]="applyCssError('manager.cellphone')" mask="000.000.000-00"/>
+                    </div>
+                    <app-field-control-error [showError]="verifyValidTouched('manager.cellphone')" errorMessage="Celular do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('manager.birthdate')">
+                        <small class="form-text text-muted">Digite a data de nascimento do responsável</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="birthdate" placeholder="Celular do Responável" [(ngModel)]="school.manager.birthdate"
+                        [ngClass]="applyCssError('manager.birthdate')" type="date"/>
+                      </div>
+                      <app-field-control-error [showError]="verifyValidTouched('manager.birthdate')" errorMessage="Celular do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Dados da Contratação</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('plan')">
+                        <small class="form-text text-muted">Selecione o plano de contratação da escola</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <select class="form-control" formControlName="plan" placeholder="Selecione o plano para contração" [(ngModel)]="school.subscriptionPlan">
+                          <option *ngFor="let plan of plans" [ngValue]="plan.id">{{ plan.name }}</option>
+                        </select>
+                      </div>
+                      <app-field-control-error [showError]="verifyValidTouched('plan')" errorMessage="CPF do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer">
+              <button *ngIf="!isNew" class="btn btn-danger float-left" (click)="onDelete()">Excluir</button>
+
+              <button class="btn btn-primary float-right" (click)="onSave()">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-loading [isProcessing]="isProcessing"></app-loading>

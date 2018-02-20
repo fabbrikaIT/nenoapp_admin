@@ -33,4 +33,19 @@ export class SchoolService extends BaseService {
 
     return this.GetRequest(serviceUrl);
   }
+
+  public GetSchool = (schoolId: number) => {
+    const serviceUrl = `${this.config.baseUrl}admin/schools/${schoolId}`;
+
+    return this.GetRequest(serviceUrl);
+  }
+
+  public SearchCEP = (cep: string) => {
+    return this.httpClient.get(`//viacep.com.br/ws/${cep}/json`)
+      .map(
+        (res) => {
+          return res;
+        }
+    );
+  }
 }
