@@ -44,7 +44,6 @@ export class DetailsComponent extends BaseComponent implements OnInit {
         this.service.GetSchool(params["id"]).subscribe(
           ret => {
             this.isProcessing = false;
-
             this.school = ret;
           },
           err => {
@@ -77,6 +76,14 @@ export class DetailsComponent extends BaseComponent implements OnInit {
       city: [{ value: "", disabled: true }],
       state: [{ value: "", disabled: true }],
       plan: [null, Validators.required],
+      contractType: [{ value: "", disabled: true }],
+      cost: [{ value: "", disabled: true }],
+      configurations: this.formBuilder.group({
+        dbName: [{ value: "", disabled: true }],
+        apiPath: [{ value: "", disabled: true }],
+        portalUrl: [{ value: "", disabled: true }],
+        logo: [{ value: "", disabled: true }]
+      }),
       manager: this.formBuilder.group({
         name: ["", Validators.required],
         email: ["", [Validators.required, Validators.email]],
@@ -100,7 +107,42 @@ export class DetailsComponent extends BaseComponent implements OnInit {
   /** FrontEnd Interface Methods */
   onSave() {
     if (this.formIsValid()) {
+      this.isProcessing = true;
+      window.scroll(0, 0);
 
+      if (this.isNew) {
+        this.service.UpdateSchool(this.school).subscribe(
+          ret => {
+            this.isProcessing = false;
+
+            if (ret) {
+              this.isNew = false;
+              this.alert.alertInformation("Novo Credenciado", "Escola foi credenciada com sucesso.");
+
+              this.location.back();
+            }
+          },
+          err => {
+            this.isProcessing = false;
+            this.alert.alertError("Atualizar Credenciado", err);
+          }
+        );
+      } else {
+        this.service.UpdateSchool(this.school).subscribe(
+          ret => {
+            this.isProcessing = false;
+
+            if (ret) {
+              this.isNew = false;
+              this.alert.alertInformation("Atualizar Credenciado", "Dados da escola atualizados com sucesso.");
+            }
+          },
+          err => {
+            this.isProcessing = false;
+            this.alert.alertError("Atualizar Credenciado", err);
+          }
+        );
+      }
     }
   }
 
@@ -125,6 +167,10 @@ export class DetailsComponent extends BaseComponent implements OnInit {
           this.school.postcode = null;
         }
       }
+  }
+
+  onSelectChange() {
+    this.school.subscriptionPlan = this.plans.find(item => item.id === this.school.subscriptionPlanId);
   }
 
   populateAddress(data) {

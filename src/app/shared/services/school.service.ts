@@ -8,6 +8,7 @@ import "rxjs/add/operator/catch";
 import { AppConfig } from './../config/app.config';
 import { BaseService } from '../base/base.service';
 import { ApplicationLog, ELogType } from './../models/logs/applicationlog.model';
+import { SchoolEntity } from '../models/admin/school.model';
 
 @Injectable()
 export class SchoolService extends BaseService {
@@ -48,4 +49,16 @@ export class SchoolService extends BaseService {
         }
     );
   }
-}
+
+  public UpdateSchool = (school: SchoolEntity) => {
+    const serviceUrl = `${this.config.baseUrl}admin/schools`;
+
+    return this.PutRequest(serviceUrl, school);
+  }
+
+  public CreateSchool = (school: SchoolEntity) => {
+    const serviceUrl = `${this.config.baseUrl}admin/schools`;
+
+    return this.PostRequest(serviceUrl, school);
+  }
+ }

@@ -236,7 +236,7 @@
                         <i class="fa fa-edit"></i>
                       </div>
                       <input class="form-control" formControlName="cellphone" placeholder="Celular do Responável" [(ngModel)]="school.manager.cellphone"
-                      [ngClass]="applyCssError('manager.cellphone')" mask="000.000.000-00"/>
+                      [ngClass]="applyCssError('manager.cellphone')" mask="(00) 0.0000-0000"/>
                     </div>
                     <app-field-control-error [showError]="verifyValidTouched('manager.cellphone')" errorMessage="Celular do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
                   </div>
@@ -248,10 +248,12 @@
                         <div class="input-group-addon">
                           <i class="fa fa-edit"></i>
                         </div>
-                        <input class="form-control" formControlName="birthdate" placeholder="Celular do Responável" [(ngModel)]="school.manager.birthdate"
-                        [ngClass]="applyCssError('manager.birthdate')" type="date"/>
+                        <input class="form-control" formControlName="birthdate" placeholder="Data de Nascimento do Responável"
+                            [ngModel]="school.manager.birthdate" (ngModelChange)="school.manager.birthdate=$event"
+                            [ngClass]="applyCssError('manager.birthdate')" bsDatepicker mask="00/00/0000"
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-blue' }"/>
                       </div>
-                      <app-field-control-error [showError]="verifyValidTouched('manager.birthdate')" errorMessage="Celular do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
+                      <app-field-control-error [showError]="verifyValidTouched('manager.birthdate')" errorMessage="Data de Nascimento do Responsável é Obrigatório" class="fixErrorPosition"></app-field-control-error>
                     </div>
                   </div>
               </div>
@@ -272,7 +274,8 @@
                         <div class="input-group-addon">
                           <i class="fa fa-edit"></i>
                         </div>
-                        <select class="form-control" formControlName="plan" placeholder="Selecione o plano para contração" [(ngModel)]="school.subscriptionPlan">
+                        <select class="form-control" formControlName="plan" placeholder="Selecione o plano para contração" (change)="onSelectChange($event)"
+                              [(ngModel)]="school.subscriptionPlanId">
                           <option *ngFor="let plan of plans" [ngValue]="plan.id">{{ plan.name }}</option>
                         </select>
                       </div>
@@ -280,6 +283,83 @@
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('contractType')">
+                      <small class="form-text text-muted">Modelo de contratação do plano</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="contractType" placeholder="Modelo de Contratação"
+                              [ngModel]="school.subscriptionPlan.contractType | planTypeName" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group col-sm-12" [ngClass]="applyCssError('cost')">
+                      <small class="form-text text-muted">Custo de contratação do plano</small>
+                      <div class="input-group mb-3">
+                        <div class="input-group-addon">
+                          <i class="fa fa-edit"></i>
+                        </div>
+                        <input class="form-control" formControlName="cost" placeholder="Custo de Contratação"
+                              [ngModel]="school.subscriptionPlan.cost | currency:'BRL'" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="card-footer" *ngIf="isNew">
+              <button *ngIf="!isNew" class="btn btn-danger float-left" (click)="onDelete()">Excluir</button>
+
+              <button class="btn btn-primary float-right" (click)="onSave()">Salvar</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" *ngIf="!isNew" >
+          <div class="card w-100">
+            <div class="card-header">
+              <h5>Configurações do Sistema</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group col-sm-12">
+                    <small class="form-text text-muted">URL do escola para acesso a plataforma do Neno App</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="school.configurations.portalUrl" disabled />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-group col-sm-12">
+                    <small class="form-text text-muted">Caminho de acesso a integração do Neno App</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="school.configurations.apiPath" disabled />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-group col-sm-12">
+                    <small class="form-text text-muted">Título da base de dados da escola</small>
+                    <div class="input-group mb-3">
+                      <div class="input-group-addon">
+                        <i class="fa fa-edit"></i>
+                      </div>
+                      <input class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="school.configurations.dbName" disabled />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
               <button *ngIf="!isNew" class="btn btn-danger float-left" (click)="onDelete()">Excluir</button>

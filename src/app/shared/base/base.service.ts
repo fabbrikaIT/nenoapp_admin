@@ -56,7 +56,7 @@ export abstract class BaseService {
   protected PutRequest = (serviceUrl: string, objBody: any): Observable<boolean> => {
     return this.httpClient.put(serviceUrl, objBody).map(
       (res: ServiceResult) => {
-        return res.Result;
+        return res.Executed;
       }
     ).catch(this.handleErrorObservable);
   }
@@ -64,7 +64,7 @@ export abstract class BaseService {
   protected DeleteRequest = (serviceUrl: string): Observable<boolean> => {
     return this.httpClient.delete(serviceUrl).map(
       (res: ServiceResult) => {
-        return res.Result;
+        return res.Executed;
       }
     ).catch(this.handleErrorObservable);
   }

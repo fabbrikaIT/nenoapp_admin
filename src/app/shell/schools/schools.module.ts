@@ -4,10 +4,12 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputMaskModule } from "ng2-inputmask";
+import { BsDatepickerModule, TimepickerModule } from 'ngx-bootstrap';
 
 import { SchoolsRoutingModule } from './schools-routing.module';
 import { SchoolsComponent } from "./schools.component";
 import { DetailsComponent } from './details/details.component';
+
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { DetailsComponent } from './details/details.component';
     ReactiveFormsModule,
     SharedModule,
     SchoolsRoutingModule,
-    InputMaskModule
+    InputMaskModule,
+    BsDatepickerModule.forRoot()
   ],
   declarations: [
     SchoolsComponent,
