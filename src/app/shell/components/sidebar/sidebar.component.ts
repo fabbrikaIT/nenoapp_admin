@@ -1,6 +1,9 @@
-import { LoginResultEntity } from './../../../shared/models/auth/loginResult.model';
 import { Component, OnInit } from "@angular/core";
+
+import { MenuEntity } from './../../../shared/models/config/MenuEntity';
+import { LoginResultEntity } from './../../../shared/models/auth/loginResult.model';
 import { BaseComponent } from "../../../shared/base/base.component";
+import { ConfigProvider } from '../../../shared/config/config.service';
 
 @Component({
   selector: "app-sidebar",
@@ -12,13 +15,16 @@ export class SidebarComponent extends BaseComponent implements OnInit {
   showMenu: string = "";
 
   authUser: LoginResultEntity;
+  menus: Array<MenuEntity> = new Array<MenuEntity>();
 
-  constructor() {
+  constructor(private configProvider: ConfigProvider) {
     super(null);
   }
 
   ngOnInit() {
     this.authUser = this.getLoginInfo();
+
+    this.menus = this.configProvider.GetApplicationMenu();
   }
 
   eventCalled() {
@@ -31,5 +37,9 @@ export class SidebarComponent extends BaseComponent implements OnInit {
     } else {
       this.showMenu = element;
     }
+  }
+
+  onMenuSelected(menu) {
+    this.configProvider.menuChanged.emit(menu);
   }
 }

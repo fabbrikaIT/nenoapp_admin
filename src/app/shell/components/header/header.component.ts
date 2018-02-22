@@ -3,6 +3,8 @@ import { Router, NavigationEnd } from "@angular/router";
 
 import { BaseComponent } from "../../../shared/base/base.component";
 import { LoginResultEntity } from "../../../shared/models/auth/loginResult.model";
+import { ConfigProvider } from '../../../shared/config/config.service';
+import { MenuEntity } from '../../../shared/models/config/MenuEntity';
 
 @Component({
   selector: "app-header",
@@ -15,10 +17,12 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   pushRightClass: string = "push-right";
   processingMessage: string = "Carregando...";
   showMessage: boolean = true;
+  showSubmenu: boolean = false;
+  menus: Array<MenuEntity> = new Array<MenuEntity>();
 
   authUser: LoginResultEntity;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private configProvider: ConfigProvider) {
     super(null);
   }
 
@@ -35,6 +39,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
       }
     });
 
+    this.menuChangeListener();
   }
 
   isToggled(): boolean {
@@ -57,5 +62,19 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     if (this.select) {
       console.log(this.select.nativeElement);
     }
+  }
+
+  menuChangeListener() {
+    this.configProvider.menuChanged.subscribe(
+      menu => {
+        if (menu && menu.SubMenu && menu.SubMenu.length > 0) {
+          this.showSubmenu = true;
+          this.menus = menu.SubMenu;
+        } else {
+          this.showSubmenu = false;
+          this.menus = new Array<MenuEntity>();
+        }
+      }
+    );
   }
 }

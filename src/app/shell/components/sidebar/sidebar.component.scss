@@ -5,8 +5,8 @@ $sidebar-background-color: #189695;
 .sidebar {
     border-radius: 0;
     position: fixed;
-    z-index: 1000;
-    top: 56px;
+    z-index: 9999;
+    top: 0px;
     left: 235px;
     width: 235px;
     margin-left: -235px;

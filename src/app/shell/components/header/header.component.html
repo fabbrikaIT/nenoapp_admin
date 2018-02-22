@@ -1,4 +1,6 @@
+
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <img src="assets/images/Logos/Logo-Neno-branco.png" style="width: 40px; margin-right: 5px;" />
   <a class="navbar-brand" href="#"> Neno App - Administrador</a>
 
   <!-- Botão do menu quando site aberto no celular -->
@@ -41,4 +43,11 @@
       </li>
     </ul>
   </div>
+</nav>
+<nav *ngIf="showSubmenu" class="navbar navbar-expand-lg navbar-dark bg-dark sub-menu">
+    <ul class="navbar-nav ml-auto sub-menu-list float-left">
+        <li class="menu-item" *ngFor="let menu of menus" [routerLink]="menu.RoutePath" [routerLinkActive]="['router-link-active']">
+            <i class="fa fa-fw" [ngClass]="menu.Icon"></i>&nbsp;{{ menu.DisplayName }}
+        </li>
+    </ul>
 </nav>

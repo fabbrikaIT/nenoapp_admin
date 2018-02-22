@@ -1,6 +1,11 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
   <ul class="list-group">
-    <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a *ngFor="let menu of menus" [routerLink]="menu.RoutePath" [routerLinkActive]="['router-link-active']"
+      class="list-group-item" (click)="onMenuSelected(menu)">
+        <i class="fa fa-fw" [ngClass]="menu.Icon"></i>&nbsp;{{ menu.DisplayName }}
+    </a>
+
+    <!-- <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard
     </a>
     <a *ngIf="authUser.type == 2" routerLink="/plans" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -29,6 +34,6 @@
               </li>
           </ul>
       </li>
-  </div>
+    </div> -->
   </ul>
 </nav>

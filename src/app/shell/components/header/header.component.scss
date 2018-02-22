@@ -1,9 +1,12 @@
 $topnav-background-color: #222;
-$topbar-background-color: #0E76BD;
+$topbar-background-color: #189695;
 
 :host {
   .navbar {
-    //background-color: $topnav-background-color;
+    height: 60px;
+    border-left: 1px solid green;
+    left: 235px;
+
     .navbar-brand {
       color: #fff;
     }
@@ -40,6 +43,54 @@ $topbar-background-color: #0E76BD;
   .bg-dark {
     background-color: $topbar-background-color !important;
   }
+
+  .sub-menu {
+    top: 60px;
+    right: 0;
+    left: 235px;
+    z-index: 1001;
+    height: 45px;
+    border-top: 1px solid green;
+    color: white;
+
+    .sub-menu-list {
+      position: absolute;
+      color: white;
+      z-index: 99999;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      align-items: center;
+      flex-direction: row!important;
+    }
+
+    .menu-item {
+      margin-right: 5px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .menu-item:hover {
+      background: #14807f;
+      color: #fff;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .navbar {
+      left: 0px;
+    }
+
+    .sub-menu {
+      left: 0px;
+    }
+  }
+
+  .text-muted {
+    color: white!important;
+  }
+
+
 }
 
 .select-message {
