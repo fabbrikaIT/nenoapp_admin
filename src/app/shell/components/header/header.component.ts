@@ -21,6 +21,8 @@ export class HeaderComponent extends BaseComponent implements OnInit {
   menus: Array<MenuEntity> = new Array<MenuEntity>();
 
   authUser: LoginResultEntity;
+  today: Date = new Date();
+  showCalendar: boolean = false;
 
   constructor(public router: Router, private configProvider: ConfigProvider) {
     super(null);
@@ -77,4 +79,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
       }
     );
   }
+
+  // Calendar Methods
+
 }

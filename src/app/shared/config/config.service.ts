@@ -54,14 +54,6 @@ export class ConfigProvider extends BaseService {
           RoutePath: "/reports/logs",
           Icon: "fa-bar-chart",
           SubMenu: null
-        },
-        {
-          Id: 5,
-          Code: "MNU005",
-          DisplayName: "Logs",
-          RoutePath: "/schools",
-          Icon: "fa-bar-chart",
-          SubMenu: null
         }
       ]}
     );

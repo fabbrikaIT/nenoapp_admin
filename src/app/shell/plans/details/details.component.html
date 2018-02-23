@@ -55,7 +55,8 @@
                       <div class="input-group-addon">
                         <i class="fa fa-usd"></i>
                       </div>
-                      <input class="form-control" dir="rtl" type="text" formControlName="cost" [(ngModel)]="plan.cost" mask="0000,00">
+                      <input class="form-control" dir="rtl" type="text" formControlName="cost" [(ngModel)]="plan.cost" currencyMask
+                      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                     </div>
                     <app-field-control-error [showError]="verifyValidTouched('cost')" errorMessage="Valor de Contrato é Obrigatório" class="fixErrorPosition"></app-field-control-error>
                 </div>

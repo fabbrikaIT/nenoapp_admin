@@ -61,7 +61,7 @@ $topbar-background-color: #189695;
       left: 10px;
       bottom: 0;
       align-items: center;
-      flex-direction: row!important;
+      flex-direction: row !important;
     }
 
     .menu-item {
@@ -87,14 +87,42 @@ $topbar-background-color: #189695;
   }
 
   .text-muted {
-    color: white!important;
+    color: white !important;
   }
-
-
 }
 
 .select-message {
   position: fixed;
   margin-left: 10px;
   color: gray;
+}
+
+.calendar-item {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  color: white;
+  border-right: 1px solid green;
+  padding: 0px 10px;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.calendar-item:hover {
+  cursor: pointer;
+}
+
+.calendar-container {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  z-index: 1050;
+  background-color: rgba(16,145,143,0.9);
+  padding: 15px;
+  border: 2px solid rgb(16,145,143);
+  border-radius: 15px;
+  color: white;
 }

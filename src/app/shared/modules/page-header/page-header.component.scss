@@ -4,5 +4,6 @@
 }
 
 .breadcrumb {
-  color: #290A38;
+  color: darken($color: #10918F, $amount: 1.9);
+  background-color: rgba(16, 145, 143, .4)!important;
 }

@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputMaskModule } from "ng2-inputmask";
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { PlansComponent } from './plans.component';
 import { PlansRoutingModule } from './plans-routing.module';
@@ -15,7 +16,8 @@ import { DetailsComponent } from './details/details.component';
     ReactiveFormsModule,
     SharedModule,
     PlansRoutingModule,
-    InputMaskModule
+    InputMaskModule,
+    CurrencyMaskModule
   ],
   declarations: [
     PlansComponent,

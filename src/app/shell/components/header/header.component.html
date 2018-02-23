@@ -26,6 +26,17 @@
         </a>
       </li> -->
 
+      <li class="nav-item dropdown">
+        <div class="calendar-item" (click)="showCalendar = !showCalendar">
+          <i class="fa fa-calendar"></i> {{ today | date:'dd/MM/yyyy' }}
+        </div>
+        <div *ngIf="showCalendar" class="calendar-container">
+          <div class="row">
+            <app-calendar [viewDate]="today"></app-calendar>
+          </div>
+        </div>
+      </li>
+
       <!-- Menu para o Usuário -->
       <li class="nav-item dropdown" ngbDropdown>
         <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>

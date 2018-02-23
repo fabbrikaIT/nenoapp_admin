@@ -45,6 +45,7 @@ export class DetailsComponent extends BaseComponent implements OnInit {
           ret => {
             this.isProcessing = false;
             this.school = ret;
+            this.school.manager.birthdate = new Date(this.school.manager.birthdate);
           },
           err => {
             this.isProcessing = false;

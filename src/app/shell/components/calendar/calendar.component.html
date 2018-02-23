@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div [(viewDate)]="viewDate" class="btn btn-primary" mwlCalendarPreviousView
+              (viewDateChange)="activeDayIsOpen = false" [view]="view">
+            Anterior
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>{{ viewDate | date:'dd/MM/yyyy' }}</h3>
+        </div>
+        <div class="col-md-4">
+            <div class="btn btn-primary" mwlCalendarNextView [(viewDate)]="viewDate"
+              (viewDateChange)="activeDayIsOpen = false" [view]="view">
+            Próxima
+          </div>
+        </div>
+    </div>
+    <br/>
+    <div style="width: 55em;">
+        <mwl-calendar-week-view
+          [viewDate]="viewDate"
+          [events]="events"
+          [refresh]="refresh"
+          (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventTimesChanged)="eventTimesChanged($event)"
+        >
+      </mwl-calendar-week-view>
+    </div>
+    <div class="row mt-3 mr-1 justify-content-end">
+      <button class="btn btn-primary float-right">Novo Evento</button>
+    </div>
+</div>
