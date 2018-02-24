@@ -270,7 +270,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-edit"></i>
                         </div>
-                        <select class="form-control" formControlName="plan" placeholder="Selecione o plano para contração" (change)="onSelectChange($event)"
+                        <select class="form-control" formControlName="plan" placeholder="Selecione o plano para contração" (change)="onSelectChange()"
                               [(ngModel)]="school.subscriptionPlanId">
                           <option *ngFor="let plan of plans" [ngValue]="plan.id">{{ plan.name }}</option>
                         </select>

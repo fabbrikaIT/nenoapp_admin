@@ -41,10 +41,35 @@ export class ConfigProvider extends BaseService {
       SubMenu: null}
     );
     menus.push(<MenuEntity>{
-      Id: 4,
+      Id: 3,
       Code: "MNU004",
+      DisplayName: "Configurações",
+      RoutePath: "/configurations",
+      Icon: "fa-gear",
+      SubMenu: [
+        {
+          Id: 6,
+          Code: "MNU006",
+          DisplayName: "Funcionalidades",
+          RoutePath: "/configurations/screens",
+          Icon: "fa-desktop",
+          SubMenu: null
+        },
+        {
+          Id: 6,
+          Code: "MNU007",
+          DisplayName: "Perfis de Acesso",
+          RoutePath: "/configurations/profiles",
+          Icon: "fa-object-group",
+          SubMenu: null
+        }
+      ]}
+    );
+    menus.push(<MenuEntity>{
+      Id: 4,
+      Code: "MNU005",
       DisplayName: "Analítico",
-      RoutePath: "/reports/logs",
+      RoutePath: "/reports",
       Icon: "fa-bar-chart",
       SubMenu: [
         {

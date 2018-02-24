@@ -22,18 +22,25 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   onLoggedin() {
-    // Usuário de desenvolvimento
-    const authUser = LoginResultEntity.GetInstance();
-    authUser.authenticationToken = "qwert";
-    authUser.loginAccept = true;
-    authUser.userName = "Developer Mode";
-    authUser.type = 2;
-    authUser.userId = 0;
+    if (this.user === "admin" && this.pass === "admin") {
+      // Usuário de desenvolvimento
+      const authUser = LoginResultEntity.GetInstance();
+      authUser.authenticationToken = "qwert";
+      authUser.loginAccept = true;
+      authUser.userName = "Developer Mode";
+      authUser.type = 2;
+      authUser.userId = 0;
 
-    // Authenticando usuário
-    localStorage.setItem('isLoggedin', 'true');
-    localStorage.setItem('authUser', JSON.stringify(authUser));
+      // Authenticando usuário
+      localStorage.setItem('isLoggedin', 'true');
+      localStorage.setItem('authUser', JSON.stringify(authUser));
 
-    this.router.navigate(['dashboard']);
+      this.router.navigate(['dashboard']);
+    } else {
+      this.user = "";
+      this.pass = "";
+
+      this.alert.alertWarning("Login", "Usuário ou Senha Inválidos");
+    }
   }
 }

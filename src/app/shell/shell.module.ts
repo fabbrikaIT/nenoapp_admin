@@ -16,7 +16,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

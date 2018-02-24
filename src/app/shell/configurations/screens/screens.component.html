@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <app-page-header icon="fa-desktop" heading="Manutenção Telas e Funcionalidades"></app-page-header>
+  <div class="row mb-3">
+    <div class="col-12">
+      <button class="btn btn-primary float-right" routerLink="details">Criar Nova Tela</button>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-striped table-hover">
+      <thead>
+        <th scope="col">Id</th>
+        <th scope="col">Ícone</th>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Path</th>
+        <th scope="col">Tela Raíz?</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let screen of screenList" routerLink="details/{{screen.id}}">
+          <td>{{ screen.id }} </td>
+          <td>
+            <div>
+              <i class="fa fa-fw" [ngClass]="screen.icon"></i>
+            </div>
+          </td>
+          <td>{{ screen.code }} </td>
+          <td>{{ screen.name }} </td>
+          <td>{{ screen.path }} </td>
+          <td>
+            <span *ngIf="screen.parentId">Não</span>
+            <span *ngIf="!screen.parentId">Sim</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-loading [isProcessing]="isProcessing"></app-loading>
